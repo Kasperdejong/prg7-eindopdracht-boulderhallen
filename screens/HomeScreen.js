@@ -1,4 +1,4 @@
-import { FlatList, SafeAreaView, StyleSheet, Text } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { useContext, useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import BoulderListItem from "../components/BoulderListItem";
@@ -33,8 +33,17 @@ export default function HomeScreen() {
         fetchBoulders();
     }, []);
 
-    const renderItem = ({ item }) => <BoulderListItem boulderGym={item} />;
-    console.log(boulderGyms);
+    const handlePress = (gym) => {
+        navigation.navigate('Map', {
+            gymId: gym.id,
+        });
+    };
+
+    const renderItem = ({ item }) => (
+        <TouchableOpacity onPress={() => handlePress(item)}>
+            <BoulderListItem boulderGym={item} />
+        </TouchableOpacity>
+    );
 
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: darkMode ? '#333' : '#f7f7f7' }]}>
@@ -44,6 +53,7 @@ export default function HomeScreen() {
                 renderItem={renderItem}
                 numColumns={2}
                 keyExtractor={(item) => item.id.toString()}
+                contentContainerStyle={styles.flatListContainer}
             />
         </SafeAreaView>
     );
@@ -58,6 +68,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center',
+        alignItems: 'center',
         marginBottom: 16,
     },
     flatListContainer: {

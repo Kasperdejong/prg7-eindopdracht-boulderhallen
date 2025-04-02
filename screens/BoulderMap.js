@@ -1,68 +1,70 @@
-import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, View } from 'react-native';
 import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
 
-export default function BoulderMap() {
-    const [path, setPath] = useState([]);
-    const [schoolRegion, setSchoolRegion] = useState({
-        latitude: 51.917212970903705,
-        longitude: 4.484049974154928,
-        latitudeDelta: 0.003,
-        longitudeDelta: 0.003,
-    });
+export default function BoulderMap({ route }) {
+    const { gymId } = route.params || {};
+    const [boulderGyms, setBoulderGyms] = useState([]);
     const [region, setRegion] = useState(null);
 
-    const requestPermission = async () => {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== 'granted') {
-            alert('Permission to access location was denied');
-            return;
-        }
-
-        Location.watchPositionAsync(
-            { accuracy: Location.Accuracy.High, timeInterval: 5000, distanceInterval: 10 },
-            (location) => {
-                const newRegion = {
-                    latitude: location.coords.latitude,
-                    longitude: location.coords.longitude,
-                    latitudeDelta: 0.003,
-                    longitudeDelta: 0.003,
-                };
-                setRegion(newRegion);
-                setPath((prevPath) => [...prevPath, { latitude: newRegion.latitude, longitude: newRegion.longitude }]);
-            }
-        );
-    };
-
     useEffect(() => {
-        requestPermission();
-        return () => {
-            if (location) {
-                location.remove();
+        (async () => {
+            const { status } = await Location.requestForegroundPermissionsAsync();
+            if (status === 'granted') {
+                Location.watchPositionAsync(
+                    { accuracy: Location.Accuracy.High, timeInterval: 5000, distanceInterval: 10 },
+                    (location) => {
+                        if (!gymId) {
+                            setRegion({
+                                latitude: location.coords.latitude,
+                                longitude: location.coords.longitude,
+                                latitudeDelta: 0.1,
+                                longitudeDelta: 0.1,
+                            });
+                        }
+                    }
+                );
+            } else {
+                alert('Permission to access location was denied');
             }
-        }
-    }, []);
+        })();
+
+        const fetchBoulders = async () => {
+            try {
+                const response = await fetch("https://stud.hosted.hr.nl/1078780/bouldergyms.json");
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                const data = await response.json();
+                setBoulderGyms(data.map(gym => ({
+                    ...gym,
+                    latitude: +gym.latitude,
+                    longitude: +gym.longitude,
+                })));
+
+                if (gymId) {
+                    const selectedGym = data.find(gym => gym.id === gymId);
+                    if (selectedGym) {
+                        setRegion({
+                            latitude: +selectedGym.latitude,
+                            longitude: +selectedGym.longitude,
+                            latitudeDelta: 0.1,
+                            longitudeDelta: 0.1,
+                        });
+                    }
+                }
+            } catch (err) {
+                console.error(err.message);
+            }
+        };
+        fetchBoulders();
+    }, [gymId]);
 
     return (
         <View style={styles.container}>
-            <MapView
-                style={styles.map}
-                region={region || schoolRegion}
-                showsUserLocation={true}
-                followsUserLocation={true}
-            >
-                <Marker
-                    coordinate={{
-                        latitude: 51.917212970903705,
-                        longitude: 4.484049974154928,
-                    }}
-                    title="Wijnhaven 99"
-                    description="Schoolgebouw"
-                />
-                {path.map((coord, index) => (
-                    <Marker key={index} coordinate={coord} />
+            <MapView style={styles.map} region={region} showsUserLocation={true}>
+                {boulderGyms.map((gym) => (
+                    <Marker key={gym.id} coordinate={{ latitude: gym.latitude, longitude: gym.longitude }} title={gym.name} description={gym.city} />
                 ))}
             </MapView>
         </View>
@@ -70,11 +72,6 @@ export default function BoulderMap() {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    map: {
-        width: '100%',
-        height: '100%',
-    },
+    container: { flex: 1 },
+    map: { width: '100%', height: '100%' },
 });

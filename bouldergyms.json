@@ -11,112 +11,112 @@
     "id": "2",
     "name": "Beest Boulders Rotterdam",
     "city": "Rotterdam",
-    "latitude": 51.922500,
-    "longitude": 4.479170,
+    "latitude": 51.9085,
+    "longitude": 4.4376,
     "imageUrl": "https://beestboulders.com/wp-content/uploads/2024/03/Groot_USP.webp"
   },
   {
     "id": "3",
     "name": "Boulder Neoliet Rotterdam",
     "city": "Rotterdam",
-    "latitude": 51.924420,
-    "longitude": 4.477733,
+    "latitude": 51.9081,
+    "longitude": 4.4370,
     "imageUrl": "https://pofzak.nl/wp-content/uploads/2015/08/pofzak_bolder_neoliet_rotterdam2.jpg"
   },
   {
     "id": "4",
     "name": "Boulderhal Roest Rotterdam",
     "city": "Rotterdam",
-    "latitude": 51.924000,
-    "longitude": 4.477900,
+    "latitude": 51.8985,
+    "longitude": 4.5228,
     "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi6ZCIWKRyTQfWUYDcQbdFqkgNrqP8jCIHvA&s"
   },
   {
     "id": "5",
     "name": "Monk Bouldergym Rotterdam",
     "city": "Rotterdam",
-    "latitude": 51.920000,
-    "longitude": 4.480000,
+    "latitude": 51.9496,
+    "longitude": 4.4825,
     "imageUrl": "https://www.dagje-uit-rotterdam.nl/wp-content/uploads/2019/03/monk-rotterdam1-e1561926664238.jpg"
   },
   {
     "id": "6",
     "name": "Be Boulder Amsterdam",
     "city": "Amsterdam",
-    "latitude": 52.337914,
-    "longitude": 4.850560,
+    "latitude": 52.3590,
+    "longitude": 4.9123,
     "imageUrl": "https://beboulder.nl/media/uploads/nl/blocks/8/thumb/20200308_130229.jpg?_=1583957876"
   },
   {
     "id": "7",
     "name": "Beest Boulders Amsterdam",
     "city": "Amsterdam",
-    "latitude": 52.370216,
-    "longitude": 4.895168,
+    "latitude": 52.3880,
+    "longitude": 4.8376,
     "imageUrl": "https://beestboulders.com/wp-content/uploads/2024/11/Abonnement_banner_Beest_geen_streep-scaled.webp"
   },
   {
     "id": "8",
     "name": "Beest Boulders Breda",
     "city": "Breda",
-    "latitude": 51.571915,
-    "longitude": 4.768323,
+    "latitude": 51.5719,
+    "longitude": 4.7683,
     "imageUrl": "https://beestboulders.com/wp-content/uploads/2024/06/Grootste_Benelux.webp"
   },
   {
     "id": "9",
     "name": "Beest Boulders Den Haag",
     "city": "Den Haag",
-    "latitude": 52.070498,
-    "longitude": 4.300700,
+    "latitude": 52.0705,
+    "longitude": 4.3007,
     "imageUrl": "https://beestboulders.com/wp-content/uploads/2024/03/Groot_USP-1.webp"
   },
   {
     "id": "10",
     "name": "Beta Boulders Amsterdam",
     "city": "Amsterdam",
-    "latitude": 52.358356,
-    "longitude": 4.881076,
+    "latitude": 52.3445,
+    "longitude": 4.8547,
     "imageUrl": "https://betaboulders.nl/wp-content/uploads/2021/07/beta-ams-space-social_17-scaled.jpg"
   },
   {
     "id": "11",
     "name": "Block013",
     "city": "Tilburg",
-    "latitude": 51.555510,
-    "longitude": 5.091300,
+    "latitude": 51.5555,
+    "longitude": 5.0913,
     "imageUrl": "https://example.com/block013.jpg"
   },
   {
     "id": "12",
     "name": "Boulder Centrum Delfts Bleau",
     "city": "Delft",
-    "latitude": 52.011576,
-    "longitude": 4.357067,
+    "latitude": 52.0116,
+    "longitude": 4.3571,
     "imageUrl": "https://example.com/delfts_bleau.jpg"
   },
   {
     "id": "13",
     "name": "Boulderhal Bruut",
     "city": "Breda",
-    "latitude": 51.597000,
-    "longitude": 4.745000,
+    "latitude": 51.5970,
+    "longitude": 4.7450,
     "imageUrl": "https://example.com/boulderhal_bruut.jpg"
   },
   {
     "id": "14",
     "name": "Boulderhal de Fabriek",
     "city": "Haarlem",
-    "latitude": 52.392000,
-    "longitude": 4.656000,
+    "latitude": 52.3920,
+    "longitude": 4.6560,
     "imageUrl": "https://example.com/boulderhal_de_fabriek.jpg"
   },
   {
     "id": "15",
     "name": "Boulderhal de Campus",
     "city": "Den Haag",
-    "latitude": 52.054000,
-    "longitude": 4.273000,
+    "latitude": 52.0540,
+    "longitude": 4.2730,
     "imageUrl": "https://example.com/boulderhal_de_campus.jpg"
   },
   {

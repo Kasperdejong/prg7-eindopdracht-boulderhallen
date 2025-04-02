@@ -17,7 +17,6 @@ export default function App() {
         </DarkModeProvider>
     );
 }
-
 function AppNavigator() {
     const { darkMode } = useContext(DarkModeContext);
 

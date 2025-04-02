@@ -7,9 +7,11 @@ export default function BoulderListItem({ boulderGym }) {
 
     return (
         <View style={[styles.container, { backgroundColor: darkMode ? '#333' : '#fff' }]}>
-            <Text style={[styles.title, { color: darkMode ? '#fff' : '#000' }]}>{boulderGym.name}</Text>
+            <Text style={[styles.title, { color: darkMode ? '#fff' : '#000' }]} numberOfLines={2} ellipsizeMode="tail">
+                {boulderGym.name}
+            </Text>
             <Image style={styles.image} source={{ uri: boulderGym.imageUrl }} />
-            <Text style={[styles.stad, { color: darkMode ? '#fff' : '#000' }]}>Deze gym is in: {boulderGym.city}</Text>
+            <Text style={[styles.stad, { color: darkMode ? '#fff' : '#000' }]}>Locatie: {boulderGym.city}</Text>
         </View>
     );
 }
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     title: {
-        fontSize: 24,
+        fontSize: 22,
         fontWeight: 'bold',
     },
     image: {
@@ -37,6 +39,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
     stad: {
-        fontSize: 16,
+        fontSize: 20,
+        fontWeight: 'bold',
     },
 });
