@@ -1,0 +1,346 @@
+[
+  {
+    "id": "1",
+    "name": "Apex Boulders",
+    "city": "Groningen",
+    "latitude": 53.235000,
+    "longitude": 6.594000,
+    "imageUrl": "https://www.apexboulders.nl/images/apex/de-hal.jpg"
+  },
+  {
+    "id": "2",
+    "name": "Beest Boulders Rotterdam",
+    "city": "Rotterdam",
+    "latitude": 51.922500,
+    "longitude": 4.479170,
+    "imageUrl": "https://beestboulders.com/wp-content/uploads/2024/03/Groot_USP.webp"
+  },
+  {
+    "id": "3",
+    "name": "Boulder Neoliet Rotterdam",
+    "city": "Rotterdam",
+    "latitude": 51.924420,
+    "longitude": 4.477733,
+    "imageUrl": "https://pofzak.nl/wp-content/uploads/2015/08/pofzak_bolder_neoliet_rotterdam2.jpg"
+  },
+  {
+    "id": "4",
+    "name": "Boulderhal Roest Rotterdam",
+    "city": "Rotterdam",
+    "latitude": 51.924000,
+    "longitude": 4.477900,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSi6ZCIWKRyTQfWUYDcQbdFqkgNrqP8jCIHvA&s"
+  },
+  {
+    "id": "5",
+    "name": "Monk Bouldergym Rotterdam",
+    "city": "Rotterdam",
+    "latitude": 51.920000,
+    "longitude": 4.480000,
+    "imageUrl": "https://www.dagje-uit-rotterdam.nl/wp-content/uploads/2019/03/monk-rotterdam1-e1561926664238.jpg"
+  },
+  {
+    "id": "6",
+    "name": "Be Boulder Amsterdam",
+    "city": "Amsterdam",
+    "latitude": 52.337914,
+    "longitude": 4.850560,
+    "imageUrl": "https://beboulder.nl/media/uploads/nl/blocks/8/thumb/20200308_130229.jpg?_=1583957876"
+  },
+  {
+    "id": "7",
+    "name": "Beest Boulders Amsterdam",
+    "city": "Amsterdam",
+    "latitude": 52.370216,
+    "longitude": 4.895168,
+    "imageUrl": "https://beestboulders.com/wp-content/uploads/2024/11/Abonnement_banner_Beest_geen_streep-scaled.webp"
+  },
+  {
+    "id": "8",
+    "name": "Beest Boulders Breda",
+    "city": "Breda",
+    "latitude": 51.571915,
+    "longitude": 4.768323,
+    "imageUrl": "https://beestboulders.com/wp-content/uploads/2024/06/Grootste_Benelux.webp"
+  },
+  {
+    "id": "9",
+    "name": "Beest Boulders Den Haag",
+    "city": "Den Haag",
+    "latitude": 52.070498,
+    "longitude": 4.300700,
+    "imageUrl": "https://beestboulders.com/wp-content/uploads/2024/03/Groot_USP-1.webp"
+  },
+  {
+    "id": "10",
+    "name": "Beta Boulders Amsterdam",
+    "city": "Amsterdam",
+    "latitude": 52.358356,
+    "longitude": 4.881076,
+    "imageUrl": "https://betaboulders.nl/wp-content/uploads/2021/07/beta-ams-space-social_17-scaled.jpg"
+  },
+  {
+    "id": "11",
+    "name": "Block013",
+    "city": "Tilburg",
+    "latitude": 51.555510,
+    "longitude": 5.091300,
+    "imageUrl": "https://example.com/block013.jpg"
+  },
+  {
+    "id": "12",
+    "name": "Boulder Centrum Delfts Bleau",
+    "city": "Delft",
+    "latitude": 52.011576,
+    "longitude": 4.357067,
+    "imageUrl": "https://example.com/delfts_bleau.jpg"
+  },
+  {
+    "id": "13",
+    "name": "Boulderhal Bruut",
+    "city": "Breda",
+    "latitude": 51.597000,
+    "longitude": 4.745000,
+    "imageUrl": "https://example.com/boulderhal_bruut.jpg"
+  },
+  {
+    "id": "14",
+    "name": "Boulderhal de Fabriek",
+    "city": "Haarlem",
+    "latitude": 52.392000,
+    "longitude": 4.656000,
+    "imageUrl": "https://example.com/boulderhal_de_fabriek.jpg"
+  },
+  {
+    "id": "15",
+    "name": "Boulderhal de Campus",
+    "city": "Den Haag",
+    "latitude": 52.054000,
+    "longitude": 4.273000,
+    "imageUrl": "https://example.com/boulderhal_de_campus.jpg"
+  },
+  {
+    "id": "16",
+    "name": "Boulderhal Kunststof",
+    "city": "Leiden",
+    "latitude": 52.152000,
+    "longitude": 4.482000,
+    "imageUrl": "https://example.com/boulderhal_kunststof.jpg"
+  },
+  {
+    "id": "17",
+    "name": "Boulderhal Krachtstof",
+    "city": "Leiden",
+    "latitude": 52.150000,
+    "longitude": 4.490000,
+    "imageUrl": "https://example.com/boulderhal_krachtstof.jpg"
+  },
+  {
+    "id": "18",
+    "name": "Boulderhal Roest",
+    "city": "Zwolle",
+    "latitude": 52.512500,
+    "longitude": 6.083500,
+    "imageUrl": "https://example.com/boulderhal_roest.jpg"
+  },
+  {
+    "id": "19",
+    "name": "Boulderhal Sterk",
+    "city": "Utrecht",
+    "latitude": 52.090000,
+    "longitude": 5.122000,
+    "imageUrl": "https://example.com/boulderhal_sterk.jpg"
+  },
+  {
+    "id": "20",
+    "name": "Boulderhal Sterk Spoor",
+    "city": "Utrecht",
+    "latitude": 52.100000,
+    "longitude": 5.110000,
+    "imageUrl": "https://example.com/boulderhal_sterk_spoor.jpg"
+  },
+  {
+    "id": "21",
+    "name": "Boulderhal Walhalla",
+    "city": "The Hague",
+    "latitude": 52.061000,
+    "longitude": 4.333000,
+    "imageUrl": "https://example.com/boulderhal_walhalla.jpg"
+  },
+  {
+    "id": "22",
+    "name": "Boulderhal Zuidhaven",
+    "city": "Utrecht",
+    "latitude": 52.080000,
+    "longitude": 5.120000,
+    "imageUrl": "https://example.com/boulderhal_zuidhaven.jpg"
+  },
+  {
+    "id": "23",
+    "name": "Bouldermuur Den Haag",
+    "city": "The Hague",
+    "latitude": 52.057000,
+    "longitude": 4.273000,
+    "imageUrl": "https://example.com/bouldermuur_den_haag.jpg"
+  },
+  {
+    "id": "24",
+    "name": "Boulder Neoliet Apeldoorn",
+    "city": "Apeldoorn",
+    "latitude": 52.211157,
+    "longitude": 5.969923,
+    "imageUrl": "https://example.com/boulder_neoliet_apeldoorn.jpg"
+  },
+  {
+    "id": "25",
+    "name": "Boulder Neoliet Tilburg",
+    "city": "Tilburg",
+    "latitude": 51.555510,
+    "longitude": 5.091300,
+    "imageUrl": "https://example.com/boulder_neoliet_tilburg.jpg"
+  },
+  {
+    "id": "26",
+    "name": "Monk Bouldergym Amsterdam",
+    "city": "Amsterdam",
+    "latitude": 52.390000,
+    "longitude": 4.890000,
+    "imageUrl": "https://example.com/monk_bouldergym_amsterdam.jpg"
+  },
+  {
+    "id": "27",
+    "name": "Het Lab Amsterdam",
+    "city": "Amsterdam",
+    "latitude": 52.370000,
+    "longitude": 4.850000,
+    "imageUrl": "https://example.com/het_lab_amsterdam.jpg"
+  },
+  {
+    "id": "28",
+    "name": "Cube Bouldergym",
+    "city": "Enschede",
+    "latitude": 52.220000,
+    "longitude": 6.890000,
+    "imageUrl": "https://example.com/cube_bouldergym.jpg"
+  },
+  {
+    "id": "29",
+    "name": "Monk Bouldergym Eindhoven",
+    "city": "Eindhoven",
+    "latitude": 51.440000,
+    "longitude": 5.470000,
+    "imageUrl": "https://example.com/monk_bouldergym_eindhoven.jpg"
+  },
+  {
+    "id": "30",
+    "name": "Boulderhal Block013",
+    "city": "Tilburg",
+    "latitude": 51.560000,
+    "longitude": 5.090000,
+    "imageUrl": "https://example.com/boulderhal_block013.jpg"
+  },
+  {
+    "id": "31",
+    "name": "Bossche Boulders",
+    "city": "'s-Hertogenbosch",
+    "latitude": 51.690000,
+    "longitude": 5.320000,
+    "imageUrl": "https://example.com/bossche_boulders.jpg"
+  },
+  {
+    "id": "32",
+    "name": "Graviton Bouldergym",
+    "city": "Sittard",
+    "latitude": 50.990000,
+    "longitude": 5.860000,
+    "imageUrl": "https://example.com/graviton_bouldergym.jpg"
+  },
+  {
+    "id": "33",
+    "name": "Gropo Bouldergym",
+    "city": "Groningen",
+    "latitude": 53.220000,
+    "longitude": 6.580000,
+    "imageUrl": "https://example.com/gropo_bouldergym.jpg"
+  },
+  {
+    "id": "34",
+    "name": "Grip Boulderhal",
+    "city": "Nijmegen",
+    "latitude": 51.830000,
+    "longitude": 5.850000,
+    "imageUrl": "https://example.com/grip_boulderhal.jpg"
+  },
+  {
+    "id": "35",
+    "name": "Kei Boulderhal",
+    "city": "Amersfoort",
+    "latitude": 52.150000,
+    "longitude": 5.380000,
+    "imageUrl": "https://example.com/kei_boulderhal.jpg"
+  },
+  {
+    "id": "36",
+    "name": "Klimmuur Den Haag",
+    "city": "Den Haag",
+    "latitude": 52.060000,
+    "longitude": 4.270000,
+    "imageUrl": "https://example.com/klimmuur_den_haag.jpg"
+  },
+  {
+    "id": "37",
+    "name": "Monk Bouldergym Hilversum",
+    "city": "Hilversum",
+    "latitude": 52.230000,
+    "longitude": 5.180000,
+    "imageUrl": "https://example.com/monk_bouldergym_hilversum.jpg"
+  },
+  {
+    "id": "38",
+    "name": "Boulderhal Nirvana",
+    "city": "Scheveningen",
+    "latitude": 52.109460,
+    "longitude": 4.276930,
+    "imageUrl": "https://example.com/boulderhal_nirvana.jpg"
+  },
+  {
+    "id": "39",
+    "name": "Boulder Eindhoven",
+    "city": "Eindhoven",
+    "latitude": 51.441642,
+    "longitude": 5.469722,
+    "imageUrl": "https://example.com/boulder_eindhoven.jpg"
+  },
+  {
+    "id": "40",
+    "name": "Radium Boulders",
+    "city": "Maastricht",
+    "latitude": 50.851368,
+    "longitude": 5.690973,
+    "imageUrl": "https://example.com/radium_boulders.jpg"
+  },
+  {
+    "id": "41",
+    "name": "Revolt Bouldering Gym",
+    "city": "Delft",
+    "latitude": 52.010000,
+    "longitude": 4.370000,
+    "imageUrl": "https://example.com/revolt_bouldering.jpg"
+  },
+  {
+    "id": "42",
+    "name": "The Boulder Factory",
+    "city": "Rotterdam",
+    "latitude": 51.920000,
+    "longitude": 4.470000,
+    "imageUrl": "https://example.com/the_boulder_factory.jpg"
+  },
+  {
+    "id": "43",
+    "name": "Urban Wall",
+    "city": "Rotterdam",
+    "latitude": 51.929000,
+    "longitude": 4.490000,
+    "imageUrl": "https://example.com/urban_wall.jpg"
+  }
+]
