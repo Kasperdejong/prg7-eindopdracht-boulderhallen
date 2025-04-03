@@ -6,7 +6,7 @@ export default function BoulderListItem({ boulderGym }) {
     const { darkMode } = useContext(DarkModeContext);
 
     return (
-        <View style={[styles.container, { backgroundColor: darkMode ? '#333' : '#fff' }]}>
+        <View style={[styles.itemContainer, { backgroundColor: darkMode ? '#333' : '#fff' }]}>
             <Text style={[styles.title, { color: darkMode ? '#fff' : '#000' }]} numberOfLines={2} ellipsizeMode="tail">
                 {boulderGym.name}
             </Text>
@@ -17,29 +17,37 @@ export default function BoulderListItem({ boulderGym }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 16,
+    itemContainer: {
+        backgroundColor: '#fff',
         borderRadius: 10,
+        borderStyle: "solid",
+        borderBlockColor: "#000",
         margin: 8,
+        padding: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.5,
-        elevation: 5,
+        shadowOpacity: 0.15,
+        shadowRadius: 3,
+        elevation: 3,
+        alignItems: 'center',
+        width: '95%',
+        height: 250,
+        justifyContent: 'space-between',
     },
     title: {
-        fontSize: 22,
+        fontSize: 18,
         fontWeight: 'bold',
+        textAlign: 'center',
+        minHeight: 44,
     },
     image: {
-        height: 200,
+        height: 130,
         width: '100%',
-        marginVertical: 16,
         borderRadius: 8,
     },
     stad: {
-        fontSize: 20,
-        fontWeight: 'bold',
+        fontSize: 16,
+        fontWeight: '600',
+        minHeight: 24,
     },
 });

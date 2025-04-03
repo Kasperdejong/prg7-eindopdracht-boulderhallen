@@ -41,24 +41,26 @@ export default function BoulderMap({ route }) {
                     latitude: +gym.latitude,
                     longitude: +gym.longitude,
                 })));
-
-                if (gymId) {
-                    const selectedGym = data.find(gym => gym.id === gymId);
-                    if (selectedGym) {
-                        setRegion({
-                            latitude: +selectedGym.latitude,
-                            longitude: +selectedGym.longitude,
-                            latitudeDelta: 0.1,
-                            longitudeDelta: 0.1,
-                        });
-                    }
-                }
             } catch (err) {
                 console.error(err.message);
             }
         };
         fetchBoulders();
-    }, [gymId]);
+    }, []);
+
+    useEffect(() => {
+        if (gymId && boulderGyms.length > 0) {
+            const selectedGym = boulderGyms.find(gym => gym.id === gymId);
+            if (selectedGym) {
+                setRegion({
+                    latitude: +selectedGym.latitude,
+                    longitude: +selectedGym.longitude,
+                    latitudeDelta: 0.1,
+                    longitudeDelta: 0.1,
+                });
+            }
+        }
+    }, [gymId, boulderGyms]);
 
     return (
         <View style={styles.container}>
