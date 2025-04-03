@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { DarkModeContext } from '../providers/DarkModeProvider';
+import {Ionicons} from "@expo/vector-icons";
 
-export default function BoulderListItem({ boulderGym }) {
+export default function BoulderListItem({ boulderGym, isFavorite, toggleFavorite }) {
     const { darkMode } = useContext(DarkModeContext);
 
     return (
@@ -12,6 +13,10 @@ export default function BoulderListItem({ boulderGym }) {
             </Text>
             <Image style={styles.image} source={{ uri: boulderGym.imageUrl }} />
             <Text style={[styles.stad, { color: darkMode ? '#fff' : '#000' }]}>Locatie: {boulderGym.city}</Text>
+
+            <TouchableOpacity onPress={() => toggleFavorite(boulderGym)} style={styles.favoriteButton}>
+                <Ionicons name={isFavorite ? "star" : "star-outline"} size={24} color="gold" />
+            </TouchableOpacity>
         </View>
     );
 }
@@ -50,4 +55,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         minHeight: 24,
     },
+    favoriteButton: {
+        padding: 5,
+},
 });

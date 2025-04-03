@@ -3,12 +3,17 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import BoulderListItem from "../components/BoulderListItem";
 import { DarkModeContext } from "../providers/DarkModeProvider";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics'
 
 export default function HomeScreen() {
     const navigation = useNavigation();
     const { darkMode } = useContext(DarkModeContext);
     const [boulderGyms, setBoulderGyms] = useState([]);
-    const [error, setError] = useState(null);
+    const [favorites, setFavorites] = useState([]);
+    const rnBiometrics = new ReactNativeBiometrics()
+
+
 
     useEffect(() => {
         const fetchBoulders = async () => {
@@ -19,19 +24,43 @@ export default function HomeScreen() {
                 const data = await response.json();
                 setBoulderGyms(data);
             } catch (err) {
-                setError(err.message);
+                console.error(err);
+            }
+        };
+
+        const loadFavorites = async () => {
+            const storedFavorites = await AsyncStorage.getItem('favorites');
+            if (storedFavorites) {
+                setFavorites(JSON.parse(storedFavorites));
             }
         };
         fetchBoulders();
+        loadFavorites();
     }, []);
 
     const handlePress = (gym) => {
         navigation.navigate('Map', { gymId: gym.id });
     };
 
+    const toggleFavorite = async (gym) => {
+        const { biometryType } = await rnBiometrics.isSensorAvailable()
+        let updatedFavorites;
+        if (favorites.some(fav => fav.id === gym.id)) {
+            updatedFavorites = favorites.filter(fav => fav.id !== gym.id);
+        } else {
+            updatedFavorites = [...favorites, gym];
+        }
+        setFavorites(updatedFavorites);
+        await AsyncStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    };
+
     const renderItem = ({ item }) => (
         <TouchableOpacity onPress={() => handlePress(item)} style={styles.itemWrapper}>
-            <BoulderListItem boulderGym={item} />
+            <BoulderListItem
+                boulderGym={item}
+                isFavorite={favorites.some(fav => fav.id === item.id)}
+                toggleFavorite={toggleFavorite}
+            />
         </TouchableOpacity>
     );
 

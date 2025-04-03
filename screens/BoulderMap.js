@@ -6,7 +6,13 @@ import * as Location from 'expo-location';
 export default function BoulderMap({ route }) {
     const { gymId } = route.params || {};
     const [boulderGyms, setBoulderGyms] = useState([]);
-    const [region, setRegion] = useState(null);
+    const [region, setRegion] = useState({
+        latitude: 51.9172,
+        longitude: 4.4840,
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.1,
+    });
+    const [activeGym, setActiveGym] = useState(null);
 
     useEffect(() => {
         (async () => {
@@ -50,14 +56,15 @@ export default function BoulderMap({ route }) {
 
     useEffect(() => {
         if (gymId && boulderGyms.length > 0) {
-            const selectedGym = boulderGyms.find(gym => gym.id === gymId);
+            const selectedGym = boulderGyms.find(gym => String(gym.id) === String(gymId));
             if (selectedGym) {
                 setRegion({
-                    latitude: +selectedGym.latitude,
-                    longitude: +selectedGym.longitude,
+                    latitude: selectedGym.latitude,
+                    longitude: selectedGym.longitude,
                     latitudeDelta: 0.1,
                     longitudeDelta: 0.1,
                 });
+                setActiveGym(selectedGym);
             }
         }
     }, [gymId, boulderGyms]);
@@ -65,9 +72,29 @@ export default function BoulderMap({ route }) {
     return (
         <View style={styles.container}>
             <MapView style={styles.map} region={region} showsUserLocation={true}>
-                {boulderGyms.map((gym) => (
-                    <Marker key={gym.id} coordinate={{ latitude: gym.latitude, longitude: gym.longitude }} title={gym.name} description={gym.city} />
-                ))}
+                {gymId ? (
+                    activeGym && (
+                        <Marker
+                            key={activeGym.id}
+                            coordinate={{
+                                latitude: activeGym.latitude,
+                                longitude: activeGym.longitude,
+                            }}
+                            title={activeGym.name}
+                            description={activeGym.city}
+                            pinColor="blue"
+                        />
+                    )
+                ) : (
+                    boulderGyms.map((gym) => (
+                        <Marker
+                            key={gym.id}
+                            coordinate={{ latitude: gym.latitude, longitude: gym.longitude }}
+                            title={gym.name}
+                            description={gym.city}
+                        />
+                    ))
+                )}
             </MapView>
         </View>
     );
