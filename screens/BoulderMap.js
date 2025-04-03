@@ -1,5 +1,5 @@
 import MapView, { Marker } from 'react-native-maps';
-import { StyleSheet, View } from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
 
@@ -13,6 +13,8 @@ export default function BoulderMap({ route }) {
         longitudeDelta: 0.1,
     });
     const [activeGym, setActiveGym] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
         (async () => {
@@ -49,6 +51,8 @@ export default function BoulderMap({ route }) {
                 })));
             } catch (err) {
                 console.error(err.message);
+            } finally {
+                setIsLoading(false);
             }
         };
         fetchBoulders();
@@ -65,15 +69,27 @@ export default function BoulderMap({ route }) {
                     longitudeDelta: 0.1,
                 });
                 setActiveGym(selectedGym);
+                console.log(activeGym)
             }
         }
     }, [gymId, boulderGyms]);
 
-    return (
+    useEffect(() => {
+        console.log(activeGym);  // This will log the updated value of activeGym
+    }, [activeGym]);
+
+        if (isLoading) {
+            return (
+                <View style={styles.loadingContainer}>
+                    <ActivityIndicator size="large" color="#0000ff" />
+                </View>
+            );
+        }
+
+    return  (
         <View style={styles.container}>
             <MapView style={styles.map} region={region} showsUserLocation={true}>
-                {gymId ? (
-                    activeGym && (
+                {gymId && activeGym ? (
                         <Marker
                             key={activeGym.id}
                             coordinate={{
@@ -84,7 +100,6 @@ export default function BoulderMap({ route }) {
                             description={activeGym.city}
                             pinColor="blue"
                         />
-                    )
                 ) : (
                     boulderGyms.map((gym) => (
                         <Marker
@@ -103,4 +118,9 @@ export default function BoulderMap({ route }) {
 const styles = StyleSheet.create({
     container: { flex: 1 },
     map: { width: '100%', height: '100%' },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
