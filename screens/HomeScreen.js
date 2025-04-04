@@ -4,14 +4,12 @@ import { useNavigation } from "@react-navigation/native";
 import BoulderListItem from "../components/BoulderListItem";
 import { DarkModeContext } from "../providers/DarkModeProvider";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics'
 
 export default function HomeScreen() {
     const navigation = useNavigation();
     const { darkMode } = useContext(DarkModeContext);
     const [boulderGyms, setBoulderGyms] = useState([]);
     const [favorites, setFavorites] = useState([]);
-    const rnBiometrics = new ReactNativeBiometrics()
 
 
 
@@ -43,7 +41,6 @@ export default function HomeScreen() {
     };
 
     const toggleFavorite = async (gym) => {
-        const { biometryType } = await rnBiometrics.isSensorAvailable()
         let updatedFavorites;
         if (favorites.some(fav => fav.id === gym.id)) {
             updatedFavorites = favorites.filter(fav => fav.id !== gym.id);
