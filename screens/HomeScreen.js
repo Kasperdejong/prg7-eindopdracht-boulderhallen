@@ -4,12 +4,14 @@ import { useNavigation } from "@react-navigation/native";
 import BoulderListItem from "../components/BoulderListItem";
 import { DarkModeContext } from "../providers/DarkModeProvider";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import ReactNativeBiometrics, { BiometryTypes } from 'react-native-biometrics'
 
 export default function HomeScreen() {
     const navigation = useNavigation();
     const { darkMode } = useContext(DarkModeContext);
     const [boulderGyms, setBoulderGyms] = useState([]);
     const [favorites, setFavorites] = useState([]);
+    const rnBiometrics = new ReactNativeBiometrics()
 
 
 
@@ -41,14 +43,31 @@ export default function HomeScreen() {
     };
 
     const toggleFavorite = async (gym) => {
-        let updatedFavorites;
-        if (favorites.some(fav => fav.id === gym.id)) {
-            updatedFavorites = favorites.filter(fav => fav.id !== gym.id);
-        } else {
-            updatedFavorites = [...favorites, gym];
+        const { available, biometryType } = await rnBiometrics.isSensorAvailable();
+
+        if (!available) {
+            console.warn('Biometrics not available');
+            return;
         }
-        setFavorites(updatedFavorites);
-        await AsyncStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+
+        const promptMessage = biometryType === BiometryTypes.FaceID
+            ? 'Use Face ID to authenticate'
+            : 'Authenticate to modify favorites';
+
+        const result = await rnBiometrics.simplePrompt({ promptMessage });
+
+        if (result.success) {
+            let updatedFavorites;
+            if (favorites.some(fav => fav.id === gym.id)) {
+                updatedFavorites = favorites.filter(fav => fav.id !== gym.id);
+            } else {
+                updatedFavorites = [...favorites, gym];
+            }
+            setFavorites(updatedFavorites);
+            await AsyncStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+        } else {
+            console.log('Biometric authentication cancelled or failed');
+        }
     };
 
     const renderItem = ({ item }) => (
