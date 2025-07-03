@@ -1,6 +1,6 @@
 import MapView, { Marker } from 'react-native-maps';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import * as Location from 'expo-location';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
@@ -20,10 +20,11 @@ export default function BoulderMap({ route }) {
     const [activeGym, setActiveGym] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    // When the screen loses focus, reset gymId, activeGym, and region to default.
+    const activeGymRef = useRef(null);
+
+    // Reset state when screen loses focus
     useEffect(() => {
         const unsubscribe = navigation.addListener('blur', () => {
-            // Clear the gym selection so the next time the map is shown, it loads all markers
             navigation.setParams({ gymId: null });
             setActiveGym(null);
             setRegion(defaultRegion);
@@ -31,15 +32,37 @@ export default function BoulderMap({ route }) {
         return unsubscribe;
     }, [navigation]);
 
+    // Fetch gyms + location permission
     useEffect(() => {
-        (async () => {
+        const fetchBoulders = async () => {
+            try {
+                const response = await fetch("https://stud.hosted.hr.nl/1078780/bouldergyms.json");
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                const data = await response.json();
+                const processedGyms = data.map(gym => ({
+                    ...gym,
+                    latitude: +gym.latitude,
+                    longitude: +gym.longitude,
+                }));
+                setBoulderGyms(processedGyms);
+            } catch (err) {
+                console.error(err.message);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        const getLocation = async () => {
             const { status } = await Location.requestForegroundPermissionsAsync();
             if (status === 'granted') {
                 Location.watchPositionAsync(
-                    { accuracy: Location.Accuracy.High, timeInterval: 5000, distanceInterval: 10 },
+                    {
+                        accuracy: Location.Accuracy.High,
+                        timeInterval: 5000,
+                        distanceInterval: 10
+                    },
                     (location) => {
-                        // Only update the region from user location if no gymId is provided.
-                        if (!gymId) {
+                        if (!gymId && !activeGym) {
                             setRegion({
                                 latitude: location.coords.latitude,
                                 longitude: location.coords.longitude,
@@ -52,45 +75,35 @@ export default function BoulderMap({ route }) {
             } else {
                 alert('Permission to access location was denied');
             }
-        })();
-
-        const fetchBoulders = async () => {
-            try {
-                const response = await fetch("https://stud.hosted.hr.nl/1078780/bouldergyms.json");
-                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-                const data = await response.json();
-                setBoulderGyms(
-                    data.map(gym => ({
-                        ...gym,
-                        latitude: +gym.latitude,
-                        longitude: +gym.longitude,
-                    }))
-                );
-            } catch (err) {
-                console.error(err.message);
-            } finally {
-                setIsLoading(false);
-            }
         };
+
         fetchBoulders();
+        getLocation();
     }, []);
 
+    // When gymId is passed in from HomeScreen
     useEffect(() => {
-        if (gymId && boulderGyms.length > 0) {
+        if (gymId && boulderGyms.length >= 43) {
             const selectedGym = boulderGyms.find(gym => String(gym.id) === String(gymId));
             if (selectedGym) {
                 setRegion({
                     latitude: selectedGym.latitude,
                     longitude: selectedGym.longitude,
-                    latitudeDelta: 0.1,
-                    longitudeDelta: 0.1,
+                    latitudeDelta: 0.03,
+                    longitudeDelta: 0.03,
                 });
                 setActiveGym(selectedGym);
+                setTimeout(() => {
+                    if (activeGymRef.current) {
+                        activeGymRef.current.showCallout();
+                    }
+                }, 500);
             }
         }
     }, [gymId, boulderGyms]);
 
-    if (isLoading) {
+    // Wait until all 43 gyms are loaded
+    if (isLoading || boulderGyms.length < 43) {
         return (
             <View style={styles.loadingContainer}>
                 <ActivityIndicator size="large" color="#0000ff" />
@@ -101,27 +114,16 @@ export default function BoulderMap({ route }) {
     return (
         <View style={styles.container}>
             <MapView style={styles.map} region={region} showsUserLocation={true}>
-                {gymId && activeGym ? (
+                {boulderGyms.map((gym) => (
                     <Marker
-                        key={activeGym.id}
-                        coordinate={{
-                            latitude: activeGym.latitude,
-                            longitude: activeGym.longitude,
-                        }}
-                        title={activeGym.name}
-                        description={activeGym.city}
-                        pinColor="blue"
+                        key={gym.id}
+                        coordinate={{ latitude: gym.latitude, longitude: gym.longitude }}
+                        title={gym.name}
+                        description={gym.city}
+                        pinColor={activeGym && gym.id === activeGym.id ? "blue" : "red"}
+                        ref={gym.id === activeGym?.id ? activeGymRef : null}
                     />
-                ) : (
-                    boulderGyms.map((gym) => (
-                        <Marker
-                            key={gym.id}
-                            coordinate={{ latitude: gym.latitude, longitude: gym.longitude }}
-                            title={gym.name}
-                            description={gym.city}
-                        />
-                    ))
-                )}
+                ))}
             </MapView>
         </View>
     );
